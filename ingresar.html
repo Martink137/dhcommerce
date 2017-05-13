@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script type="text/javascript" src="js/java.js"></script>
+<script src="js/java.js"></script>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 	<title>Hola DH</title>
 </head>
@@ -62,8 +62,8 @@
           </div>
           <div class="panel-body">
             <div class="row">
-              <div class="col-lg-12">
-                <form id="login-form" action="http://phpoll.com/login/process" method="post" role="form" style="display: block;">
+              <div class="col-lg-12" id="login-form">
+                <form  action="" method="post" role="form" style="display: block;">
                   <div class="form-group">
                     <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
                   </div>
@@ -91,7 +91,9 @@
                     </div>
                   </div>
                 </form>
-                <form id="register-form" action="http://phpoll.com/register/process" method="post" role="form" style="display: none;">
+                </div>
+                <div class="col-lg-12">
+                <form  id="register-form" action="" method="post" role="form" style="display: none;">
                   <div class="form-group">
                     <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
                   </div>
@@ -124,5 +126,6 @@
         <p class="text-muted">Todos los Derechos Reservados</p>
       </div>
     </footer>
+
 </body>
 </html>
