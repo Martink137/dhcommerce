@@ -7,6 +7,12 @@ body {
   margin-bottom: 60px;
   padding-top: 90px;
 }
+
+header {
+  background-image: url(../images/fondo.png);
+}
+
+
 .footer {
   position: absolute;
   bottom: 0;
