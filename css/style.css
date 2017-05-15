@@ -9,8 +9,18 @@ body {
 }
 
 header {
-  background-image: url(../images/fondo.png);
+  background-image: url(../images/fondo.jpg);
+  height: 400px;
 }
+
+header p {
+  color: white;
+}
+
+header h1 {
+  color: white;
+}
+
 
 
 .footer {
