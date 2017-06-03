@@ -1,51 +1,42 @@
-<!DOCTYPE html>
-<html>
-<head>
-<link rel="shortcut icon" href="images/favicon.ico" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="css/style.css">
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script src="js/java.js"></script>
-<link rel="stylesheet" type="text/css" href="css/style.css">
-	<title>DH Commerce</title>
-</head>
-<body>
-<nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="index.html">DH Commerce</a>
+<?php
+require_once('requires.php');
+
+if(isUserLoggedIn()){
+      header('location: index.php');
+    }
+
+$username = $_POST['username'] ?? null;
+$email = $_POST['email'] ?? null;
+
+
+$errores = [];
+if($_POST)
+{
+  //if(!$errores)
+  //if(count($errores) == 0)
+  if(!($errores = registrar($_POST)))
+  {
+    header('location: index.php');
+    exit;
+  }
+}
+
+//abrirHtml('Registración', '');
+cabecera();
+
+
+?>
+
+   <?php
+      //if(count($errores) > 0) {
+      //if(!empty($errores)) {
+      if($errores) { ?>
+        <div class="alert alert-danger">
+        <?php foreach($errores as $error) {
+          echo $error . '<br>';
+        }?>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="">Telefonos</a></li>
-            <li><a href="">TVS</a></li>
-            <li><a href="">Laptops</a></li>
-            
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-          <li><a href="ingresar.html">Ingresar</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ayuda <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="preguntas.html">Preguntas Frecuentes</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-   <form>
+      <?php } ?>
 <div class="container">
       <div class="row">
       <div class="col-md-6 col-md-offset-3">
@@ -62,9 +53,9 @@
             <hr>
           </div>
           <div class="panel-body">
-            <div class="row">
+            <div class="row"> 
               <div class="col-lg-12" id="login-form">
-                <form  action="" method="get" style="display: block;">
+                <form  id="login-form" action="index.php" method="post" style="display: block;">
                   <div class="form-group">
                     <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
                   </div>
@@ -94,12 +85,16 @@
                 </form>
                 </div>
                 <div class="col-lg-12">
-                <form  id="register-form" action="" method="get" role="form" style="display: none;">
+                <form  id="register-form" action="" method="post" role="form" style="display: none;" enctype="multipart/form-data">
                   <div class="form-group">
-                    <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+                  <label class="control-label">Select File</label>
+                  <input type="file" name="avatar">
                   </div>
                   <div class="form-group">
-                    <input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
+                    <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value=<?php echo isset($_POST['username']) ? $_POST['username'] : '' ?>>
+                  </div>
+                  <div class="form-group">
+                    <input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value=<?php echo isset($_POST['email']) ? $_POST['email'] : '' ?>>
                   </div>
                   <div class="form-group">
                     <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
@@ -127,6 +122,19 @@
         <p class="text-muted">Todos los Derechos Reservados</p>
       </div>
     </footer>
+    <?php if($_POST)
+{
+  echo '
+<script type="text/javascript">
+    $("#register-form").delay(100).fadeIn(100);
+    $("#login-form").fadeOut(100);
+    $("#login-form-link").removeClass("active");
+    $(this).addClass("active");
+    e.preventDefault();
+    </script>';} 
+    ?>
+
+
 
 </body>
 </html>
