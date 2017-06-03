@@ -1,0 +1,4 @@
+# Ignore bundler config.
+# Ignore all logfiles and tempfiles.
+/funciones/images/*
+*.json
