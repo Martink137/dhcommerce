@@ -1,4 +1,5 @@
 # Ignore bundler config.
+
 # Ignore all logfiles and tempfiles.
 /images/avatar/user
-usuarios.json
+*.json
