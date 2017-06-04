@@ -86,10 +86,17 @@ cabecera();
                 </div>
                 <div class="col-lg-12">
                 <form  id="register-form" action="" method="post" role="form" style="display: none;" enctype="multipart/form-data">
+
                   <div class="form-group">
-                  <label class="control-label">Select File</label>
-                  <input type="file" name="avatar">
-                  </div>
+                  <div class="input-group">
+                <label class="input-group-btn">
+                    <span class="btn btn-primary">
+                        Browse Avatar&hellip; <input type="file" name="avatar" style="display: none;">
+                    </span>
+                </label>
+                <input type="text" class="form-control" style="height:auto;" readonly>
+                </div>
+                </div>
                   <div class="form-group">
                     <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value=<?php echo isset($_POST['username']) ? $_POST['username'] : '' ?>>
                   </div>

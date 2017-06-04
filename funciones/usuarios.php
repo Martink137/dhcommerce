@@ -67,7 +67,7 @@ function guardarUsuario(array $datos)
 
 	$datos['username'] = strtolower(trim($datos['username']));
 
-	$retornoImagen = guardarImagen( $_FILES['avatar'], __DIR__.'/images/avatar/user' );
+	$retornoImagen = guardarImagen( $_FILES['avatar'],'images/avatar/user' );
 	$datos['avatar'] = $retornoImagen['nombreArchivo'];
 
 	//id

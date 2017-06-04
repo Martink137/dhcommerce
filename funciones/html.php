@@ -39,7 +39,7 @@ function cabecera()
           </ul>
           <ul class="nav navbar-nav navbar-right">';
 		if(isUserLoggedIn()){
-			echo '<li>'. $_SESSION['user']['username'] .'</li><li><a href="logout.php">Logout</a></li>';
+			echo '<li><a href="">'. $_SESSION['user']['username'] .'</a></li><li><a href="logout.php">Logout</a></li>';
 		}
 			else
 			{
