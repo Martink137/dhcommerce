@@ -126,6 +126,66 @@ function loguearUsuario(array $datos)
 	return [];
 }
 
+function sendNewPassword($email){
+	if(($user = checkDuplicado('email', $email)))
+	{		
+		return SendMail($email);;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+function updateJsonRecord($email, $val, $newval){
+	
+	$usuarios = listUsers();
+	foreach ($usuarios as $key => $entry) {
+    if ($entry['email'] == $email) {
+        $usuarios[$key]['password'] = $newval;
+    }
+}
+	var_dump($usuarios);
+	saveUsersFile($usuarios);
+}
+
+function SendMail($email){
+$mail             = new PHPMailer();
+
+$mail->IsSMTP(); // telling the class to use SMTP
+$mail->SMTPAuth   = true;                  // enable SMTP authentication
+$mail->SMTPSecure = "tls";                 
+$mail->Host       = "smtp.gmail.com";      // SMTP server
+$mail->Port       = 587;                   // SMTP port
+$mail->Username   = "dhcommerce2017@gmail.com";  // username
+$mail->Password   = "dhcommerce";            // password
+
+$mail->SetFrom('noreply@dhcommerce.com', 'DH Commerce');
+
+$mail->Subject    = "Su nueva Password";
+
+for ($i = 0; $i<6; $i++) 
+{
+    $newpass .= mt_rand(0,9);
+}
+
+$passhash = password_hash($newpass, PASSWORD_DEFAULT);
+updateJsonRecord($email,'password',$passhash);
+
+$mail->MsgHTML('Su nueva password es '. $newpass);
+
+$address = $email;
+$mail->AddAddress($address, "Test");
+
+if(!$mail->Send()) {
+//  echo "Mailer Error: " . $mail->ErrorInfo;
+return false;
+} else {
+	return true;
+ // echo "Message sent!";
+}
+}
+
 function logout()
 {
 	//borrar la varible user de la session

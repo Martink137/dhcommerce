@@ -77,7 +77,7 @@ cabecera();
                     <div class="row">
                       <div class="col-lg-12">
                         <div class="text-center">
-                          <a href="" tabindex="5" class="forgot-password">Forgot Password?</a>
+                          <a href="forgot.php" tabindex="5" class="forgot-password">Forgot Password?</a>
                         </div>
                       </div>
                     </div>
@@ -112,7 +112,7 @@ cabecera();
                   <div class="form-group">
                     <div class="row">
                       <div class="col-sm-6 col-sm-offset-3">
-                        <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
+                        <input type="submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
                       </div>
                     </div>
                   </div>
