@@ -145,7 +145,7 @@ function updateJsonRecord($email, $val, $newval){
         $usuarios[$key][$val] = $newval;
     }
 }
-	var_dump($usuarios);
+
 	saveUsersFile($usuarios);
 }
 
