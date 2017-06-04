@@ -142,7 +142,7 @@ function updateJsonRecord($email, $val, $newval){
 	$usuarios = listUsers();
 	foreach ($usuarios as $key => $entry) {
     if ($entry['email'] == $email) {
-        $usuarios[$key]['password'] = $newval;
+        $usuarios[$key][$val] = $newval;
     }
 }
 	var_dump($usuarios);
