@@ -1,5 +1,8 @@
 
-<?php cabecera(); ?>
+<?php 
+require_once('requires.php');
+
+cabecera(); ?>
     <div class="container">
       <div class="page-header">
         <h1>Preguntas Frecuentes	</h1>

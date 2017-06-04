@@ -2,4 +2,5 @@
 
 # Ignore all logfiles and tempfiles.
 /images/avatar/user
+/images/avatar/user/*.jpeg
 *.json
