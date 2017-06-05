@@ -108,10 +108,6 @@ Provincia Pagos o Cajero autom&aacute;tico de Red Link o Home Banking adheridos.
 </div>
 </div>
 
-	   <footer class="footer">
-      <div class="container">
-        <p class="text-muted">Todos los Derechos Reservados</p>
-      </div>
-    </footer>
+<?php footer(); ?>
 </body>
 </html>

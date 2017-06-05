@@ -65,3 +65,4 @@ cabecera();
         </div>
     </div>
 </div>
+<?php footer(); ?>

@@ -67,7 +67,7 @@ function guardarUsuario(array $datos)
 
 	$datos['username'] = strtolower(trim($datos['username']));
 
-	$retornoImagen = guardarImagen( $_FILES['avatar'],'images/avatar/user/',$datos['email'] . $datos['username']);
+	$retornoImagen = guardarImagen($_FILES['avatar'],'images/avatar/user/',$datos['email'] . $datos['username']);
 	$datos['avatar'] = $retornoImagen['nombreArchivo'];
 
 	//id
@@ -135,6 +135,47 @@ function sendNewPassword($email){
 	{
 		return false;
 	}
+}
+
+function updateProfile(array $post)
+{
+
+	$datos = $post;
+
+	if(!$errores = validateUpdate($datos))
+	{
+		updateUsuario($datos);
+	}
+
+
+	return $errores;
+
+}
+
+function updateUsuario(array $datos)
+{
+	if (!empty($datos["password"])) {
+	$datos['password'] = password_hash($datos['password'], PASSWORD_DEFAULT);
+	unset($datos['confirm-password']);
+	updateJsonRecord($_SESSION['user']['email'],'password',$datos['password']);
+	}
+
+	if ($datos['email'] <> $_SESSION['user']['email']){
+	$datos['email'] = strtolower(trim($datos['email']));
+	updateJsonRecord($_SESSION['user']['email'],'email',$datos['email']);
+	$_SESSION['user']['email'] = $datos['email'];
+	}
+
+	if (empty($_FILES["avatar"]["name"])) {
+}
+	else {	
+	$retornoImagen = guardarImagen( $_FILES['avatar'],'images/avatar/user/',$datos['email'] . $datos['username']);
+	$datos['avatar'] = $retornoImagen['nombreArchivo'];
+	updateJsonRecord($_SESSION['user']['email'],'avatar',$datos['avatar']);
+	$_SESSION['user']['avatar'] = $datos['avatar'];
+	}
+
+
 }
 
 function updateJsonRecord($email, $val, $newval){

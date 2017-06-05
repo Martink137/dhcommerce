@@ -7,7 +7,11 @@ if(!isUserLoggedIn()){
 $errores = [];
 if($_POST)
 {
-
+  if(!($errores = updateProfile($_POST)))
+  {
+    header('location: profile.php');
+    exit;
+  }
 }
 $avatar = $_SESSION['user']['avatar'];
 cabecera();
@@ -34,12 +38,12 @@ cabecera();
     <hr>
   <div class="row">
       <!-- left column -->
+      <form class="form-horizontal" role="form" method="post" action="" enctype="multipart/form-data">
       <div class="col-md-3">
         <div class="text-center">
           <img src=<?php echo $avatar ?> class="avatar img-circle" alt="avatar">
-          <h6>Upload a different photo...</h6>
-          
-          <input class="form-control" type="file">
+          <h6>Upload a different photo...</h6>        
+          <input type="file" name="avatar">
         </div>
       </div>
       
@@ -47,17 +51,17 @@ cabecera();
       <div class="col-md-9 personal-info">
         <h3>Personal info</h3>
         
-        <form class="form-horizontal" role="form">
+        
           <div class="form-group">
             <label class="col-lg-3 control-label">Username:</label>
             <div class="col-lg-8">
-              <input class="form-control" name="username" value=<?php echo isset($_SESSION['user']['username']) ? $_SESSION['user']['username'] : '' ?> type="text">
+              <input class="form-control" name="username" value=<?php echo isset($_SESSION['user']['username']) ? $_SESSION['user']['username'] : '' ?> type="text" readonly>
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-3 control-label">Email:</label>
             <div class="col-lg-8">
-              <input class="form-control" name="email" value=<?php echo isset($_SESSION['user']['email']) ? $_SESSION['user']['email'] : '' ?> type="text">
+              <input class="form-control" name="email" value=<?php echo isset($_SESSION['user']['email']) ? $_SESSION['user']['email'] : '' ?> type="email">
             </div>
           </div>
           
@@ -70,19 +74,18 @@ cabecera();
           <div class="form-group">
             <label class="col-lg-3 control-label">Confirm password:</label>
             <div class="col-lg-8">
-              <input class="form-control" name="conf-password" type="password">
+              <input class="form-control" name="confirm-password" type="password">
             </div>
           </div>
           <div class="form-group">
             <label class="col-md-3 control-label"></label>
             <div class="col-md-8">
-              <input class="btn btn-primary" value="Save Changes" type="button">
+              <input class="btn btn-primary" value="Save Changes" type="submit">
               <span></span>
-              <input class="btn btn-default" value="Cancel" type="reset">
             </div>
           </div>
         </form>
       </div>
   </div>
 </div>
-<hr>
+<?php footer(); ?>

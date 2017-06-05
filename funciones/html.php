@@ -60,9 +60,13 @@ function cabecera()
 
 function footer()
 {
-	echo '
-		</div>
-		<div class="text-center">&copy; ' . date('Y') . '</div>
+	echo '<footer class="footer">
+      <div class="container">
+        <p class="text-muted">Todos los Derechsos Reservados  &copy; ' . date('Y') . '</p>     
+      </div>
+    </footer>
+	
+		
 	';
 }
 

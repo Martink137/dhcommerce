@@ -124,11 +124,7 @@ cabecera();
       </div>
     </div>
   </div>
-	   <footer class="footer">
-      <div class="container">
-        <p class="text-muted">Todos los Derechos Reservados</p>
-      </div>
-    </footer>
+<?php footer(); ?>
     <?php if($_POST)
 {
   echo '
