@@ -67,7 +67,7 @@ function guardarUsuario(array $datos)
 
 	$datos['username'] = strtolower(trim($datos['username']));
 
-	$retornoImagen = guardarImagen( $_FILES['avatar'],'images/avatar/user' );
+	$retornoImagen = guardarImagen( $_FILES['avatar'],'images/avatar/user/',$datos['email'] . $datos['username']);
 	$datos['avatar'] = $retornoImagen['nombreArchivo'];
 
 	//id
@@ -228,7 +228,7 @@ function guardarUserEnSession($user)
 }
 
 
-function guardarImagen($input , $ruta) {
+function guardarImagen($input , $ruta, $md5aux) {
 		if ($input["error"] == UPLOAD_ERR_OK)
 		{
 			$nombre=$input["name"];
@@ -242,8 +242,9 @@ function guardarImagen($input , $ruta) {
 				//valido tamaño imagen
 				//valido tipo de imagen
 			}
+
 			$ext = pathinfo($nombre, PATHINFO_EXTENSION);
-			$miArchivo = $ruta  .microtime().'.'. $ext;
+			$miArchivo = $ruta  .md5($md5aux).'.'. $ext;
 			move_uploaded_file($archivo, $miArchivo);
 
 			$Retorno['nombreArchivo'] = $miArchivo;
