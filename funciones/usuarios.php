@@ -167,7 +167,7 @@ function updateUsuario(array $datos)
 	}
 
 	if (empty($_FILES["avatar"]["name"])) {
-}
+	}
 	else {	
 	$retornoImagen = guardarImagen( $_FILES['avatar'],'images/avatar/user/',$datos['email'] . $datos['username']);
 	$datos['avatar'] = $retornoImagen['nombreArchivo'];

@@ -62,7 +62,7 @@ function footer()
 {
 	echo '<footer class="footer">
       <div class="container">
-        <p class="text-muted">Todos los Derechsos Reservados  &copy; ' . date('Y') . '</p>     
+        <p class="text-muted">Todos los Derechos Reservados  &copy; ' . date('Y') . '</p>     
       </div>
     </footer>
 	
@@ -75,7 +75,7 @@ function cerrarHtml()
 	echo '
 		<script src="assets/libs/jquery/jquery-1.11.1.min.js"></script>
 		<script src="assets/libs/bootstrap-3/js/bootstrap.min.js"></script>
-	</body>
+	 </body>
 	</html>
 	';
 }
